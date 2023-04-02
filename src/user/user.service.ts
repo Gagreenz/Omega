@@ -15,6 +15,11 @@ export class UserService {
         return this.userRepository.save(user);
     }
 
+    async findById(id:number): Promise<User> {
+        //ищем пользователя по id
+        return this.userRepository.findOne({ where: { id }, relations: ['profile'] });
+    }
+
     async findByUsername(username:string): Promise<User> {
         //ищем пользователя по имени
         return this.userRepository.findOne({where: {username}});
